@@ -42,7 +42,7 @@ class CWebView extends CWebViewer
 		this.__Ptr := ""
 	}
 
-	SetURL(url:="about:blank")
+	SetURL(url:="about:<!DOCTYPE html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'/></head>") ;// For HTML5
 	{
 		wb := this.__Ptr
 		wb.Navigate(url)
@@ -172,8 +172,8 @@ class CWebViewer extends CWebCommon
 				try val := WshShell.RegRead(skey)
 				catch error
 					val := 0
-				finally
-					return val
+				
+				return val
 			}
 
 			;// set()
@@ -199,8 +199,8 @@ class CWebViewer extends CWebCommon
 			try value? WshShell.RegWrite(skey, value, "REG_DWORD") : WshShell.RegDelete(skey)
 			catch error
 				throw error
-			finally
-				return this.BrowserEmulation
+			
+			return this.BrowserEmulation
 		}
 		set {
 			return this.BrowserEmulation[value] ;// trigger get()
